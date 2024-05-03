@@ -13,15 +13,34 @@ export class DataService {
     }
 
     guardarPersonas(personas: Persona[]): Observable<any> {
-        return this.httpClient.post('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json', personas);
+        return this.httpClient.put('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json', personas);
      
     }
 
-    modificarPersona(index:number, personas: Persona[]): Observable<any>{
+    modificarPersona(index:number, persona: Persona): Observable<any>{
+        console.log( "El indice es: " + index );
+        
+            console.log(persona)
+      
+        console.log( "La persona es: " + persona.toString() );
+
         let url: string;
-        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com' + '/datos/' + index + '.json';
-        return this.httpClient.put( url, personas);
+        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + index + '.json';
+        return this.httpClient.put( url, persona);
             
+    }
+
+    eliminarPersona(index:number){
+        let url: string;
+        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + (index) + '.json';
+        console.log("url de eliminarPersona:" + url);
+        this.httpClient.delete( url)
+            .subscribe(
+                (response) => {
+                    console.log("resultado eliminar Persona: " + response);
+                },
+                (error) => console.log("Error en eliminar Persona: " + error)
+            );
     }
 
      /* modificarPersona(index:number, persona: Persona): Observable<any>  {

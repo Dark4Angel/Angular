@@ -45,13 +45,21 @@ ngOnInit(): void {
 
 
   guardarPersona(){
+    console.log("guardarPersona 0" )
     let persona1 = new Persona(this.nombreInput, this.apellidoInput);
+    console.log("guardarPersona 1" )
     if(this.modoEdicion != null && this.modoEdicion === 1){
+      console.log("guardarPersona 2" )
       this.personasService.modificarPersona(this.index, persona1);
+      console.log("guardarPersona 3" )
     }else{
+      console.log("guardarPersona 4" )
       this.personasService.agregarPersona(persona1);
+      console.log("guardarPersona 5" )
     } 
+    console.log("guardarPersona 6" )
     this.router.navigate(['personas']);
+    console.log("guardarPersona 7" )
 
   }   
 

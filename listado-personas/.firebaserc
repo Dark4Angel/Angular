@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "listado-personas-e4eb9": {
+      "hosting": {
+        "listado-personas": [
+          "listado-personas-e4eb9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "listado-personas-e4eb9"
+  }
+}
