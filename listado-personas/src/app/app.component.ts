@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
   private personasService: PersonasService) { } */
 
   ngOnInit(): void {
-    firebase.initializeApp({
+/*     firebase.initializeApp({
     apiKey: "AIzaSyC7QzXwCGSfvjEd62RCGF9F0DDsI31u88w",
     authDomain: "listado-personas-e4eb9.firebaseapp.com",
-    })
+    }) */
     }
     //this.personas = this.personasService.personas;
     
