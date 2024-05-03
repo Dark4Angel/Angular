@@ -18,11 +18,13 @@ export class DataService {
     }
 
     guardarPersonas(personas: Persona[]): Observable<any> {
-        return this.httpClient.put('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json', personas);
+      const token =  this.loginService.getIdToken()
+        return this.httpClient.put('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json?auth='+token, personas);
 
     }
 
     modificarPersona(index:number, persona: Persona): Observable<any>{
+      const token =  this.loginService.getIdToken()
         console.log( "El indice es: " + index );
 
             console.log(persona)
@@ -30,14 +32,15 @@ export class DataService {
         console.log( "La persona es: " + persona.toString() );
 
         let url: string;
-        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + index + '.json';
+        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + index + '.json?auth='+token;
         return this.httpClient.put( url, persona);
 
     }
 
     eliminarPersona(index:number){
         let url: string;
-        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + (index) + '.json';
+        const token =  this.loginService.getIdToken()
+        url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + (index) + '.json?auth='+token;
         console.log("url de eliminarPersona:" + url);
         this.httpClient.delete( url)
             .subscribe(
