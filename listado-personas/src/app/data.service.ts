@@ -2,32 +2,37 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Persona } from "./persona.model";
 import { Observable, of } from 'rxjs';
+import { LoginService } from "./login/login.service";
 
 
 @Injectable()
 export class DataService {
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient,
+      private loginService: LoginService
+    ) { }
 
     cargarPersonas(): Observable<Persona[]> {
-        return this.httpClient.get<Persona[]>('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json');
+      const token =  this.loginService.getIdToken()
+
+        return this.httpClient.get<Persona[]>('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json?auth='+token);
     }
 
     guardarPersonas(personas: Persona[]): Observable<any> {
         return this.httpClient.put('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json', personas);
-     
+
     }
 
     modificarPersona(index:number, persona: Persona): Observable<any>{
         console.log( "El indice es: " + index );
-        
+
             console.log(persona)
-      
+
         console.log( "La persona es: " + persona.toString() );
 
         let url: string;
         url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + index + '.json';
         return this.httpClient.put( url, persona);
-            
+
     }
 
     eliminarPersona(index:number){
@@ -48,7 +53,7 @@ export class DataService {
         this.httpClient('https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos.json'+ index, persona);
         console.log("url de modificarPersona:" + url);
         this.httpClient.put( url, persona);
-           
+
     }  */
 
 
@@ -62,10 +67,10 @@ export class DataService {
         );
     } */
 
-    
+
 }
 
-    
+
 
 
 

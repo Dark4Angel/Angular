@@ -14,6 +14,7 @@ import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { initializeApp } from 'firebase/app';
+import { LoginService } from './login/login.service';
 
 
 @NgModule({
@@ -31,13 +32,13 @@ import { initializeApp } from 'firebase/app';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-  
+
   ],
   providers: [
-   LoggingService, PersonasService, DataService
+   LoggingService, PersonasService, DataService, LoginService
     //provideClientHydration()
   ],
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }
