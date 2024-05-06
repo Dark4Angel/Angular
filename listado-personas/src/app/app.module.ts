@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { initializeApp } from 'firebase/app';
 import { LoginService } from './login/login.service';
+import { LoginGuardian } from './login/login-guardian.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { LoginService } from './login/login.service';
 
   ],
   providers: [
-   LoggingService, PersonasService, DataService, LoginService
+   LoggingService, PersonasService, DataService, LoginService, LoginGuardian
     //provideClientHydration()
   ],
   bootstrap: [AppComponent]
