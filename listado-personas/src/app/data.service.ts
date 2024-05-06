@@ -43,12 +43,14 @@ export class DataService {
         url = 'https://listado-personas-e4eb9-default-rtdb.firebaseio.com/datos/' + (index) + '.json?auth='+token;
         console.log("url de eliminarPersona:" + url);
         this.httpClient.delete( url)
+        
             .subscribe(
                 (response) => {
                     console.log("resultado eliminar Persona: " + response);
                 },
                 (error) => console.log("Error en eliminar Persona: " + error)
             );
+            
     }
 
      /* modificarPersona(index:number, persona: Persona): Observable<any>  {
@@ -72,8 +74,3 @@ export class DataService {
 
 
 }
-
-
-
-
-

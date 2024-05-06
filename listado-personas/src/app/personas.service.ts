@@ -78,6 +78,8 @@ export class PersonasService{
           this.personas.splice(index,1);
           this.dataService.eliminarPersona(index);
           this.modificarPersonas();
+          
+          
         }
 
         modificarPersonas(){

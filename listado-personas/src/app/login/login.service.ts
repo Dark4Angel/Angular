@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 
 
 import { getAuth , signInWithEmailAndPassword} from "firebase/auth";
+import { app } from '../../../server';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class LoginService {
 
     constructor(private router:Router){}
 
-     login(email: string, password: string) {
+    login(email: string, password: string) {
         const app = firebase.initializeApp({
           apiKey: "AIzaSyC7QzXwCGSfvjEd62RCGF9F0DDsI31u88w",
           authDomain: "listado-personas-e4eb9.firebaseapp.com",
@@ -36,11 +37,22 @@ export class LoginService {
 
       }
 
-      getIdToken(){
-        return this.token;
-      }
+    getIdToken(){
+       return this.token;
+    }
+
+    isAutenticado(){
+        return this.token != null;
+    }
 
 
-
+    logout(){
+       
+    const auth = getAuth().signOut().then(() =>{
+              this.token != null;
+              console.log("dentro de signout")
+              this.router.navigate(['login']);
+          }).catch(error => console.log("error logout" + error));
+    }
 
 }
